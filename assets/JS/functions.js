@@ -38,6 +38,7 @@ function egg_down(egg){
 function check_egg_hits_floor(egg) {
     if(collision(egg, floor)){
         show_bulls_eye(egg);
+        decrement_life();
         return true;
     }
     return false;
@@ -62,3 +63,34 @@ function hide_bulls_eye(bullseye_num){
     $('#bullseye' + bullseye_num).hide();
     }, 800);
 }
+
+//decrement life when eggs hit the floor
+function decrement_life(){
+    life--;
+    life_span.text(life);
+}
+
+//manage when the eggs hit the basket
+function check_egg_hits_basket(egg){
+    if(collision(egg, basket)) { //when eggs hit basket, it return to it's inital position
+        //condition, if the basket start is not hitten by the egg top, it is a loss
+        egg_top = parseInt(egg.css('top'));
+        if(egg_top < basket_top) {
+        update_score();
+        return true;
+        }
+    }
+    return false
+}
+
+//update score when the egg hit the basket
+function update_score(){
+    score++;
+    score_span.text(score);
+    score_1.text(score);
+}
+
+//End the game
+
+
+
