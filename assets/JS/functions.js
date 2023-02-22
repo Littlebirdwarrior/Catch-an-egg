@@ -90,7 +90,10 @@ function update_score(){
     score_1.text(score);
 }
 
-//End the game
+//End the game when loose (cf fonction.js)
+function stop_the_game(){
+    cancelAnimationFrame(anim_id);
+}
 
 
 
