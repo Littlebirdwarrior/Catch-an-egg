@@ -34,4 +34,14 @@ function egg_down(egg){
     egg.css('top', egg_current_position + 2)
 }
 
-//stop egg on the floor
+//stop egg on the floor and return in initial position
+function check_egg_hits_floor(egg) {
+    if(collision(egg, floor)){
+        return true;
+    }
+    return false;
+}
+
+function set_egg_to_initial_position(egg){
+    egg.css('top', egg_initial_position);
+}
