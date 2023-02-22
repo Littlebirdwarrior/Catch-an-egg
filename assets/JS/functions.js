@@ -37,6 +37,7 @@ function egg_down(egg){
 //stop egg on the floor and return in initial position
 function check_egg_hits_floor(egg) {
     if(collision(egg, floor)){
+        show_bulls_eye(egg);
         return true;
     }
     return false;
@@ -44,4 +45,20 @@ function check_egg_hits_floor(egg) {
 
 function set_egg_to_initial_position(egg){
     egg.css('top', egg_initial_position);
+}
+
+//show bull eye, related to the data attribute un html,
+//with a concatemation of string, we target the good attribute
+function show_bulls_eye(egg){
+    bullseye_num = egg.attr('data-bullseye');
+    $('#bullseye' + bullseye_num).show();
+    hide_bulls_eye(bullseye_num)
+
+}
+
+//hide the bullseye 800 ms after it's appeared
+function hide_bulls_eye(bullseye_num){
+    setTimeout(function () {
+    $('#bullseye' + bullseye_num).hide();
+    }, 800);
 }
