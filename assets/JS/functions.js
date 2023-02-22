@@ -31,7 +31,7 @@ $(document).keydown(function(event){
 //falling egg infinitely
 function egg_down(egg){
     egg_current_position = parseInt(egg.css('top'));
-    egg.css('top', egg_current_position + 2)
+    egg.css('top', egg_current_position + speed) //here, we can update the egg falling speed (cf update score)
 }
 
 //stop egg on the floor and return in initial position
@@ -86,6 +86,10 @@ function check_egg_hits_basket(egg){
 //update score when the egg hit the basket
 function update_score(){
     score++;
+    //if you play longer, increase difficulty by incrasing speed and set a maximal speed (dont break count function)
+    if(score % 10 === 0 && speed <= max_speed) {
+        speed ++;
+    }
     score_span.text(score);
     score_1.text(score);
 }
@@ -93,7 +97,12 @@ function update_score(){
 //End the game when loose (cf fonction.js)
 function stop_the_game(){
     cancelAnimationFrame(anim_id);
+    restart.slideDown();
 }
+
+restart.click(function (){
+    location.reload();
+});
 
 
 
